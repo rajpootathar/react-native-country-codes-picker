@@ -61,6 +61,7 @@ interface Props {
     itemTemplate?: (props: ItemTemplateProps) => JSX.Element,
     ListHeaderComponent?: (props: ListHeaderComponentProps) => JSX.Element,
     onRequestClose?: (...args: any) => any,
+    searchIcon: any
 
     lang: string,
     inputPlaceholder?: string,
@@ -89,6 +90,7 @@ export const CountryPicker = ({
     showOnly,
     ListHeaderComponent,
     itemTemplate: ItemTemplate = CountryButton,
+    searchIcon,
     ...rest
 }: Props) => {
     // ToDo refactor exclude and showOnly props to objects
@@ -217,82 +219,38 @@ export const CountryPicker = ({
         return false;
     };
 
+    if(showModal){
     return (
-        <Modal
-            animationType="fade"
-            transparent={true}
-            visible={showModal}
-            onShow={openModal}
-            onRequestClose={onRequestClose}
-        >
+       
             <View
                 style={{
                     flex: 1,
-                    justifyContent: 'flex-end'
-                }}
-            >
-                {!disableBackdrop && (
-                    <Animated.View
-                        onStartShouldSetResponder={onStartShouldSetResponder}
-                        style={[
-                            {
-                                flex: 1,
-                                opacity: modalBackdropFade,
-                                backgroundColor: 'rgba(0,0,0,0.45)',
-                                position: 'absolute',
-                                width: '100%',
-                                height: '100%',
-                                justifyContent: 'flex-end'
-                            },
-                            style?.backdrop
-                        ]}
-                    />
-                )}
-                <Animated.View
-                    style={[
-                        styles.modal,
-                        style?.modal,
-                        {
-                            transform: [
-                                {
-                                    translateY: modalPosition,
-                                },
-                            ],
-                        },
-                    ]}
-                >
+                    justifyContent: 'flex-end',
+                    marginTop: 8,
+                    borderWidth: 1,
+                    borderRadius: 10,
+                    borderColor: '#939393',
+                    }}
+                     >
                     <View
                         style={{
                             flexDirection: 'row',
                             alignItems: 'center',
                         }}
                     >
+                        {searchIcon && searchIcon}
                         <TextInput
                             style={[styles.searchBar, style?.textInput]}
                             value={searchValue}
                             onChangeText={setSearchValue}
-                            placeholder={inputPlaceholder || 'Search your country'}
+                            placeholder={inputPlaceholder || 'Search for countries'}
                             placeholderTextColor={inputPlaceholderTextColor || '#8c8c8c'}
                             testID='countryCodesPickerSearchInput'
                             {...rest}
                         />
                     </View>
                     <View style={[styles.line, style?.line]} />
-                    {resultCountries.length === 0 ? (
-                        <View style={[styles.countryMessage, style?.countryMessageContainer]}>
-                            <Text
-                                style={[
-                                    {
-                                        color: '#8c8c8c',
-                                        fontSize: 16,
-                                    },
-                                    style?.searchMessageText,
-                                ]}
-                            >
-                                {searchMessage || 'Sorry we cant find your country :('}
-                            </Text>
-                        </View>
-                    ) : (
+                  
                         <FlatList
                             showsVerticalScrollIndicator={false}
                             data={(resultCountries || codes)}
@@ -316,8 +274,6 @@ export const CountryPicker = ({
                             }
                             {...rest}
                         />
-                    )}
-                </Animated.View>
                 <Animated.View
                     style={[
                         styles.modalInner,
@@ -328,8 +284,8 @@ export const CountryPicker = ({
                     ]}
                 />
             </View>
-        </Modal>
-    )
+      
+    )}
 };
 
 interface CountryListProps {
@@ -476,10 +432,10 @@ const styles: { [key in StyleKeys]: ViewStyle } = {
     },
     searchBar: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: 'white',
         borderRadius: 10,
         height: 40,
-        padding: 5,
+        padding: 15,
     },
     countryMessage: {
         justifyContent: 'center',
