@@ -9,23 +9,15 @@ export const CountryButton = ({ item, name, style, ...rest }: ItemTemplateProps)
         testID="countryCodesPickerCountryButton"
         {...rest}
     >
-        <Text style={[
-            {
-                flex: 0.2
-            },
-            style?.flag
-        ]}>
+        <Text style={{fontSize: 14}}>
             {item?.flag}
         </Text>
-        <Text style={[{
-            flex: 0.3,
-        }, style?.dialCode]}>
-            {item?.dial_code}
-        </Text>
-        <Text style={[{
-            flex: 1
-        }, style?.countryName]}>
+        
+        <Text style={{paddingHorizontal: 5, fontSize: 14}}>
             {name}
+        </Text>
+        <Text style={{fontSize: 14}}>
+            {item?.dial_code}
         </Text>
     </TouchableOpacity>
 );
@@ -35,7 +27,7 @@ type StyleKeys = 'countryButton';
 const styles: { [key in StyleKeys]: ViewStyle } = {
     countryButton: {
         paddingVertical: 10,
-        backgroundColor: '#f5f5f5',
+        // backgroundColor: '#f5f5f5',
         width: '100%',
         height: 50,
         paddingHorizontal: 25,
