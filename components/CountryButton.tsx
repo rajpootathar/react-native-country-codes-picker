@@ -17,7 +17,7 @@ export const CountryButton = ({ item, name, style, ...rest }: ItemTemplateProps)
             {name}
         </Text>
         <Text style={{fontSize: 14}}>
-            {item?.dial_code}
+            ({item?.dial_code})
         </Text>
     </TouchableOpacity>
 );
@@ -30,7 +30,7 @@ const styles: { [key in StyleKeys]: ViewStyle } = {
         // backgroundColor: '#f5f5f5',
         width: '100%',
         height: 50,
-        paddingHorizontal: 25,
+        paddingHorizontal: 14,
         alignItems: 'center',
         marginVertical: 2,
         flexDirection: 'row',
