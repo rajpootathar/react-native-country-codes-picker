@@ -224,12 +224,12 @@ export const CountryPicker = ({
        
             <View
                 style={{
-                    flex: 1,
                     justifyContent: 'flex-end',
                     marginTop: 8,
                     borderWidth: 1,
                     borderRadius: 10,
                     borderColor: '#939393',
+                    height: '30%'
                     }}
                      >
                     <View
