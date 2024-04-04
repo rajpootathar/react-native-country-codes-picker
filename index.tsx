@@ -236,6 +236,7 @@ export const CountryPicker = ({
                         style={{
                             flexDirection: 'row',
                             alignItems: 'center',
+                            paddingLeft: 12,
                         }}
                     >
                         {searchIcon && searchIcon}
@@ -435,7 +436,7 @@ const styles: { [key in StyleKeys]: ViewStyle } = {
         backgroundColor: 'white',
         borderRadius: 10,
         height: 40,
-        padding: 15,
+        paddingLeft: 7
     },
     countryMessage: {
         justifyContent: 'center',
