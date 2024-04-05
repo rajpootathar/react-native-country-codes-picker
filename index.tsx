@@ -229,7 +229,6 @@ export const CountryPicker = ({
                     borderWidth: 1,
                     borderRadius: 10,
                     borderColor: '#939393',
-                    height: '30%'
                     }}
                      >
                     <View
